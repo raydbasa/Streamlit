@@ -1,5 +1,5 @@
 import streamlit as st
-import cv2
+# import cv2
 import numpy as np
 from ultralytics import YOLO
 model = YOLO("yolov8m.pt")
@@ -28,15 +28,15 @@ def main():
     if uploaded_file is not None:
         # Read the image file
         image = np.array(bytearray(uploaded_file.read()), dtype=np.uint8)
-        frame = cv2.imdecode(image, 1)  # 1 means load color image
-        results = model.predict(frame)
-        result = results[0]
+        # frame = cv2.imdecode(image, 1)  # 1 means load color image
+        # results = model.predict(frame)
+        # result = results[0]
 
-        for box in result.boxes:
-            xB, xA, yB, yA = box_to_coord(box)
-            cv2.rectangle(frame, (xA, yA), (xB, yB), (0, 255, 0), 2)
+        # for box in result.boxes:
+        #     xB, xA, yB, yA = box_to_coord(box)
+        #     cv2.rectangle(frame, (xA, yA), (xB, yB), (0, 255, 0), 2)
 
-        st.image(frame, channels="BGR")
+        st.image(image, channels="BGR")
 
 if __name__ == "__main__":
     main()
